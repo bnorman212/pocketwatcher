@@ -1,12 +1,18 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Pocketwatcher banner" width="100%"/>
+  <img src="https://raw.githubusercontent.com/bnorman212/pocketwatcher/main/assets/banner.svg" 
+       alt="Pocketwatcher banner" width="100%"/>
 </p>
 
 <p align="center">
-  <a href="https://github.com/"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/yourname/pocketwatcher/ci.yml?label=CI"></a>
-  <a href="https://pypi.org/project/pocketwatcher/"><img alt="PyPI" src="https://img.shields.io/pypi/v/pocketwatcher.svg"></a>
+  <a href="https://github.com/bnorman212/pocketwatcher/actions/workflows/ci.yml">
+    <img alt="CI" src="https://github.com/bnorman212/pocketwatcher/actions/workflows/ci.yml/badge.svg">
+  </a>
+  <a href="https://pypi.org/project/pocketwatcher/">
+    <img alt="PyPI version" src="https://img.shields.io/pypi/v/pocketwatcher.svg">
+  </a>
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green.svg">
 </p>
+
 
 
 # Pocketwatcher
