@@ -107,15 +107,6 @@ See `samples/linux/auth.log` for common sshd failure patterns.
 
 ---
 
-### LinkedIn Launch Post — Ready to Copy
-
-⏱️🔒 **Pocketwatcher** — a tiny, defensive log watcher for blue teams.  
-It scans Linux `auth.log` and Windows Security logs to surface **brute‑force** and **password‑spray** attempts, with clean CSV/JSONL output.
-
-- Linux & Windows (Evtx) support
-- Configurable thresholds & time windows
-- MIT‑licensed, simple CLI
-- Perfect for SOC, IR, and homelabs
 
 Built by Brittany Norman — August 28, 2025  
 #BlueTeam #CyberSecurity #DFIR #SIEM #Python #OpenSource
