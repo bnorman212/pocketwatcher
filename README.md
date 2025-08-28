@@ -13,15 +13,13 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green.svg">
 </p>
 
-
-
 # Pocketwatcher
 
-**Pocketwatcher** is a small-but-mighty log analysis CLI that spots **brute‑force** and **password‑spray** activity and summarizes **account lockouts** across Linux (`/var/log/auth.log`) and Windows (Security.evtx). Built for blue teams, IR, and SOC analysts who want fast answers.
+**Pocketwatcher** is a small-but-mighty log analysis CLI that spots **brute-force** and **password-spray** activity and summarizes **account lockouts** across Linux (`/var/log/auth.log`) and Windows (Security.evtx). Built for blue teams, IR, and SOC analysts who want fast answers.
 
 - ✅ Parses Linux `auth.log` (sshd, su, sudo, PAM)
 - 🪟 Parses Windows Security logs (4625/4624/4740) when `python-evtx` is available
-- 🔎 Detects **brute-force** (per‑IP) and **spray** (per‑user unique IPs) with configurable thresholds
+- 🔎 Detects **brute-force** (per-IP) and **spray** (per-user unique IPs) with configurable thresholds
 - 📈 Terminal tables + **CSV** and **JSONL** reports
 - 🧹 Ruff + GitHub Actions CI
 - 🧪 Samples + tests included
@@ -68,8 +66,8 @@ pocketwatcher scan linux --path /var/log/auth.log --jsonl reports/findings.jsonl
 
 ## Detection logic
 
-- **Brute force (per‑IP)**: N failures from the same IP within a rolling window.
-- **Spray (per‑user)**: N **unique IPs** failing against the same username within a window.
+- **Brute force (per-IP)**: N failures from the same IP within a rolling window.
+- **Spray (per-user)**: N **unique IPs** failing against the same username within a window.
 - **Lockouts** (Windows): Event ID **4740**.
 
 Tune everything via CLI flags or `pocketwatcher.yml`.
@@ -91,7 +89,7 @@ ignore_ips:
 
 - **Terminal**: Rich tables
 - **CSV**: Flat report
-- **JSONL**: Line-delimited, SIEM‑friendly
+- **JSONL**: Line-delimited, SIEM-friendly
 
 ## Development
 
@@ -107,11 +105,7 @@ See `samples/linux/auth.log` for common sshd failure patterns.
 
 ---
 
-
-Built by Brittany Norman — August 28, 2025  
-#BlueTeam #CyberSecurity #DFIR #SIEM #Python #OpenSource
-
-## New in 0.2.0
+## New in 0.2.1 (banner fix + polish)
 - Optional **GeoIP** (country) and **ASN** enrichment
 - New detections: `country_block` and `asn_burst`
 - Ready-to-go **PyPI publish** workflow (tag with `v0.2.0` to release)
@@ -122,4 +116,22 @@ Built by Brittany Norman — August 28, 2025
 pip install .[geo,asn]
 # Use MaxMind & pyasn databases
 pocketwatcher scan linux --path /var/log/auth.log --geoip-mmdb GeoLite2-Country.mmdb --asn-db rib.dat --allow-country US --deny-country CN --asn-threshold 40
+```
+
+## Docker (GitHub Packages / GHCR)
+
+Pull the image (after CI publishes it on pushes/tags):
+```bash
+docker pull ghcr.io/bnorman212/pocketwatcher:latest
+# or a version tag:
+docker pull ghcr.io/bnorman212/pocketwatcher:v0.2.1
+```
+
+Run against a local auth.log (bind-mount a folder):
+```bash
+# Windows PowerShell
+docker run --rm -v ${PWD}:/data ghcr.io/bnorman212/pocketwatcher:latest   scan linux --path /data/samples/linux/auth.log --csv /data/reports/linux_report.csv
+
+# macOS/Linux
+docker run --rm -v $(pwd):/data ghcr.io/bnorman212/pocketwatcher:latest   scan linux --path /data/samples/linux/auth.log --csv /data/reports/linux_report.csv
 ```

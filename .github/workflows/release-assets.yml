@@ -1,0 +1,44 @@
+name: Build & Attach Release Assets
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build artifacts
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+          mkdir -p out
+          cp -r dist out/dist
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: out/dist
+
+  attach-to-release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Create GitHub Release (if not exists) and upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*

@@ -1,6 +1,6 @@
 [project]
 name = "pocketwatcher"
-version = "0.2.0"
+version = "0.2.1"
 description = "Pocket-sized brute-force & password-spray detector for Linux auth.log and Windows Security logs, with optional GeoIP/ASN detection"
 authors = [{name="Brittany Norman"}]
 readme = "README.md"
